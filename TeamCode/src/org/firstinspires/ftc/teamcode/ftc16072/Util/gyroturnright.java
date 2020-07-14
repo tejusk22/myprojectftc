@@ -12,6 +12,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 @TeleOp(name="right turn", group="imu exercise")
+
 public class gyroturnright extends LinearOpMode {
     DcMotor fl, fr, bl, br;
     BNO055IMU imu;
@@ -23,6 +24,7 @@ public class gyroturnright extends LinearOpMode {
         bl = hardwareMap.get(DcMotor.class, "back_left_motor");
         br = hardwareMap.get(DcMotor.class, "back_right_motor");
         imu = hardwareMap.get(BNO055IMU.class, "imu");
+
 
         fl.setDirection(DcMotorSimple.Direction.REVERSE);
         bl.setDirection((DcMotorSimple.Direction.REVERSE));
@@ -42,6 +44,7 @@ public class gyroturnright extends LinearOpMode {
                     AxesOrder.ZYX,
                     AngleUnit.DEGREES
             );
+
            /*if (headingangle.firstAngle == setangle) {
                ial=false;
                fl.setPower(0.0);
@@ -105,7 +108,7 @@ public class gyroturnright extends LinearOpMode {
             bl.setPower(lefty * 0.5);
             br.setPower(lefty * 0.5);
             if (gamepad1.a) {
-                ial = true;
+
                 if (setangle == 0) {
                     setangle = -90;
 
@@ -121,42 +124,73 @@ public class gyroturnright extends LinearOpMode {
                     sleep(100);
                 }
             }
+            telemetry.addData("setangle:",setangle);
+            telemetry.update();
                 if(setangle ==-90) {
                     if (headingangle.firstAngle >= setangle) {
                         fl.setPower(0.2);
                         bl.setPower(0.2);
                         fr.setPower(0);
                         br.setPower(0);
-                    } if(setangle ==180) {
-                        if (headingangle.firstAngle <= setangle) {
+                    }else{
+                        fl.setPower(0);
+                        bl.setPower(0);
+                        fr.setPower(0);
+                        br.setPower(0);
+                    }
+                }
+                if(setangle == 180) {
+                       if (headingangle.firstAngle <= setangle) {
+
                             fl.setPower(0.2);
                             bl.setPower(0.2);
                             fr.setPower(0);
                             br.setPower(0);
 
 
-                        }
-                    }if(setangle ==90) {
+
+                        }else{
+                           fl.setPower(0);
+                           bl.setPower(0);
+                           fr.setPower(0);
+                           br.setPower(0);
+
+                       }
+                    }
+                if(setangle ==90) {
                         if (headingangle.firstAngle >= setangle) {
                             fl.setPower(0.2);
                             bl.setPower(0.2);
                             fr.setPower(0);
                             br.setPower(0);
-                        }
-                    } if(setangle == 0) {
-                        if (headingangle.firstAngle >= setangle) {
-                            fl.setPower(0.2);
-                            bl.setPower(0.2);
+                        }else{
+                            fl.setPower(0);
+                            bl.setPower(0);
                             fr.setPower(0);
                             br.setPower(0);
                         }
                     }
+                if(setangle == 0) {
+                        if (headingangle.firstAngle >= setangle) {
+                            fl.setPower(0.2);
+                            bl.setPower(0.2);
+                            fr.setPower(0);
+                            br.setPower(0);
+                        }else{
+                            fl.setPower(0);
+                            bl.setPower(0);
+                            fr.setPower(0);
+                            br.setPower(0);
+                        }
+                    }
+
+
                 }
             }
 
 
         }
-    }
+
 
 
 
